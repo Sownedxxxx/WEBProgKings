@@ -25,13 +25,13 @@
     $Namn = $_POST['Förnamn'];
     $Efter = $_POST['Efternamn'];
     $Pass = $_POST['Password'];
-
+    $Roll = $_POST['Roll'];
     $User = substr($Namn,0,1) . substr($Efter,0,1) . substr($Per,-4);
 
 
 
-    $sql = $link->prepare("INSERT INTO konto (Personnummer,User,Pass,Fistname,Secondname) VALUES (?,?,?,?,?)");
-    $sql->bind_param("issss",$Per,$User,$Pass,$Namn,$Efter);
+    $sql = $link->prepare("INSERT INTO konto (Personnummer,User,Pass,Roll,Fistname,Secondname) VALUES (?,?,?,?,?,?)");
+    $sql->bind_param("isssss",$Per,$User,$Pass,$Roll,$Namn,$Efter);
     $sql->execute();
   }
 
@@ -65,12 +65,21 @@
         <input patter="[A-Za-z0-9_]{6,20}" type="text" name="Password" value=""><br><br>
         </div>
 
+
+
+        <select name="Roll" required>
+          <option disabled selected value="">Välj Roll</option>
+          <option value="Chef">Chef</option>
+          <option value="Medarbetare">Medarbetare</option>
+
+        </select>
         <input type="submit" name="submit" value="skicka">
+
       </form>
 
       <?php
         if(isset($_POST['submit'])){
-            
+
 
 
         }
